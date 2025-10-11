@@ -14,20 +14,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // TODO: Replace this with your actual authentication logic
-        val isAuthenticated = true
+        if (savedInstanceState == null) {
+            // TODO: Replace this with your actual authentication logic
+            val isAuthenticated = true
 
-        val navHostFragment =binding.navHostFragment.getFragment<NavHostFragment>()
-        val navController = navHostFragment.navController
+            val navHostFragment =
+                supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            val navController = navHostFragment.navController
 
-        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+            val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
 
-        if (isAuthenticated) {
-            navGraph.setStartDestination(R.id.homeFragment)
-        } else {
-            navGraph.setStartDestination(R.id.loginFragment)
+            if (isAuthenticated) {
+                navGraph.setStartDestination(R.id.homeFragment)
+            } else {
+                navGraph.setStartDestination(R.id.loginFragment)
+            }
+
+            navController.graph = navGraph
         }
-
-        navController.graph = navGraph
     }
 }
