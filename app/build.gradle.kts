@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.coroutines.android)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.glide)
 
     // UI
     implementation(libs.material)
