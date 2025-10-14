@@ -4,6 +4,11 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.whatnownews.data.remote.favorites.FavoriteArticlesDS
+import com.example.whatnownews.data.repository.ArticleRepositoryImpl
+import com.example.whatnownews.domain.repository.ArticleRepository
+import com.example.whatnownews.presentation.favorites.FavoritesViewModel
+import org.koin.core.module.dsl.viewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.GsonBuilder
@@ -55,6 +60,14 @@ val appModule = module {
         androidContext().dataStore
     }
 
+    // Data Source
+    single { FavoriteArticlesDS(get(), get()) }
+
+
     // Repositories
+    single<ArticleRepository> { ArticleRepositoryImpl(get()) }
+
+    // ViewModels
+    viewModel { FavoritesViewModel(get()) }
 
 }
