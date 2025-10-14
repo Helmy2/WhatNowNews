@@ -54,12 +54,14 @@ dependencies {
     implementation(libs.coroutines.android)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.glide)
 
     // UI
     implementation(libs.material)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     implementation(libs.motionlayout)
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
     // Network
     implementation(libs.retrofit)

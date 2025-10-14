@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_homeFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_articleListFragment"
+            app:destination="@id/articleListFragment" />
     </fragment>
 
     <fragment
@@ -77,5 +80,11 @@
         android:name="com.example.whatnownews.presentation.favorites.FavoritesFragment"
         android:label="FavoritesFragment"
         tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/articleListFragment"
+        android:name="com.example.whatnownews.presentation.articles.ArticleListFragment"
+        android:label="ArticleListFragment"
+        tools:layout="@layout/fragment_article_list" />
 
 </navigation>

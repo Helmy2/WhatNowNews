@@ -17,6 +17,11 @@ import com.example.whatnownews.presentation.auth.ForgotPasswordViewModel
 import com.example.whatnownews.presentation.auth.LoginViewModel
 import com.example.whatnownews.presentation.auth.SignUpViewModel
 import com.example.whatnownews.presentation.auth.SplashViewModel
+import com.example.whatnownews.data.remote.favorites.FavoriteArticlesDS
+import com.example.whatnownews.data.repository.ArticleRepositoryImpl
+import com.example.whatnownews.domain.repository.ArticleRepository
+import com.example.whatnownews.presentation.favorites.FavoritesViewModel
+import org.koin.core.module.dsl.viewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.GsonBuilder
@@ -68,6 +73,10 @@ val appModule = module {
     // DataStore
     single { androidContext().dataStore }
 
+    // Data Source
+    single { FavoriteArticlesDS(get(), get()) }
+
+
     // Repositories
     single { AuthRepositoryImpl(get()) } bind AuthRepository::class
     //singleOf(::AuthRepositoryImpl) { bind<AuthRepository>() }
@@ -88,5 +97,9 @@ val appModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { ForgotPasswordViewModel(forgotPasswordUseCase = get()) }
     viewModel { SplashViewModel(checkAuthStatusUseCase = get()) }
+    single<ArticleRepository> { ArticleRepositoryImpl(get()) }
+
+    // ViewModels
+    viewModel { FavoritesViewModel(get()) }
 
 }
