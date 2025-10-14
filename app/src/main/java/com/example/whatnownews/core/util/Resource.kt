@@ -1,4 +1,4 @@
-package com.example.whatnownews.presentation.auth.util
+package com.example.whatnownews.core.util
 
 /**
  * A generic class that holds a value with its loading status.
@@ -23,3 +23,4 @@ sealed class Resource<T>(
      */
     class Loading<T> : Resource<T>()
 }
+
