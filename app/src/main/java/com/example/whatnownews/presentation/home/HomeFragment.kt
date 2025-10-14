@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.ivFav.setOnClickListener {
-            Toast.makeText(context, "Favourite Clicked", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
         }
 
         binding.ivOptions.setOnClickListener { anchorView ->
