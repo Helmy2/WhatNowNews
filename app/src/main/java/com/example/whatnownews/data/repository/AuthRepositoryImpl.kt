@@ -1,6 +1,7 @@
 package com.example.whatnownews.data.repository
 
 import com.example.whatnownews.core.util.Resource
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.coroutines.flow.Flow
@@ -8,7 +9,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
-class AuthRepositoryImpl(private val firebaseAuth: FirebaseAuth) : com.example.whatnownews.domain.repository.AuthRepository {
+class AuthRepositoryImpl(private val firebaseAuth: FirebaseAuth) :
+    com.example.whatnownews.domain.repository.AuthRepository {
 
     override fun signUp(email: String, password: String): Flow<Resource<Unit>> = flow {
         emit(Resource.Loading())
@@ -22,6 +24,7 @@ class AuthRepositoryImpl(private val firebaseAuth: FirebaseAuth) : com.example.w
                 "ERROR_WEAK_PASSWORD" -> "The password is too weak. Please use a stronger password."
                 else -> e.localizedMessage ?: "An unknown error occurred."
             }
+
             else -> e.localizedMessage ?: "An unknown error occurred."
         }
         emit(Resource.Error(message))
@@ -54,4 +57,29 @@ class AuthRepositoryImpl(private val firebaseAuth: FirebaseAuth) : com.example.w
         val message = e.localizedMessage ?: "Failed to check verification status"
         emit(Resource.Error(message))
     }
+
+    override suspend fun login(email: String, password: String): Resource<AuthResult> {
+        return try {
+            val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
+            Resource.Success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.Error(e.message ?: "An unknown error occurred.")
+        }
+    }
+
+    override suspend fun sendPasswordResetEmail(email: String): Resource<Unit> {
+        return try {
+            firebaseAuth.sendPasswordResetEmail(email).await()
+            Resource.Success(Unit)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.Error(e.message ?: "Failed to send reset email.")
+        }
+    }
+
+    override fun getCurrentUserUid(): String? {
+        return firebaseAuth.currentUser?.uid
+    }
+
 }
