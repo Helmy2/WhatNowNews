@@ -15,6 +15,14 @@
     <string name="back_to_login">العودة إلى تسجيل الدخول</string>
     <string name="forgot_password_title">هل نسيت كلمة السر</string>
     <string name="verify_your_email">التحقق من البريد الإلكتروني الخاص بك</string>
-    <string name="verification_sent_message">تم إرسال رابط التحقق إلى بريدك الإلكتروني. يُرجى الضعط عليه للتحقق من حسابك ومتابعة تسجيل الدخول.</string>
+    <string name="verification_sent_message">تم إرسال رابط التحقق إلى بريدك الإلكتروني. يُرجى الضعط عليه للتحقق من حسابك ومتابعة الي الصفحة الرئسية.</string>
     <string name="go_to_login">اذهب إلى تسجيل الدخول</string>
+    <string name="check_verification_status">التحقق من حالة التحقق</string>
+    <string name="resend_verification_email">إعادة إرسال بريد التحقق</string>
+    <string name="use_different_email">استخدام بريد إلكتروني مختلف</string>
+    <string name="resend_in">إعادة الإرسال خلال %1$d ثانية</string>
+    <string name="email_verified_success">تم التحقق من البريد الإلكتروني بنجاح!</string>
+    <string name="email_not_verified">لم يتم التحقق من البريد الإلكتروني بعد. يرجى التحقق من بريدك الوارد.</string>
+    <string name="verification_email_sent">تم إرسال بريد التحقق بنجاح!</string>
+    <string name="email_not_verified_login">بريدك الإلكتروني غير مُحقق. يرجى التحقق من بريدك الإلكتروني أولاً.</string>
 </resources>

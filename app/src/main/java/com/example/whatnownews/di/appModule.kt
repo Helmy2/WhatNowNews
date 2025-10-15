@@ -11,6 +11,7 @@ import com.example.whatnownews.domain.usecase.auth.ForgotPasswordUseCase
 import com.example.whatnownews.domain.usecase.auth.LoginUseCase
 import com.example.whatnownews.domain.usecase.auth.SendEmailVerificationUseCase
 import com.example.whatnownews.domain.usecase.auth.SignUpUseCase
+import com.example.whatnownews.domain.usecase.auth.SignOutUseCase
 import com.example.whatnownews.presentation.auth.CheckAuthStatusUseCase
 import com.example.whatnownews.presentation.auth.EmailVerificationViewModel
 import com.example.whatnownews.presentation.auth.ForgotPasswordViewModel
@@ -85,6 +86,7 @@ val appModule = module {
     factoryOf(::SignUpUseCase)
     factoryOf(::SendEmailVerificationUseCase)
     factoryOf(::CheckEmailVerifiedUseCase)
+    factoryOf(::SignOutUseCase)
     factory { LoginUseCase(get()) }
     factory { ForgotPasswordUseCase(repository = get()) }
     factory { CheckAuthStatusUseCase(repository = get()) }
@@ -94,7 +96,7 @@ val appModule = module {
     // ViewModels
     viewModelOf(::SignUpViewModel)
     viewModelOf(::EmailVerificationViewModel)
-    viewModel { LoginViewModel(get()) }
+    viewModel { LoginViewModel(get(), get()) }
     viewModel { ForgotPasswordViewModel(forgotPasswordUseCase = get()) }
     viewModel { SplashViewModel(checkAuthStatusUseCase = get()) }
     single<ArticleRepository> { ArticleRepositoryImpl(get()) }

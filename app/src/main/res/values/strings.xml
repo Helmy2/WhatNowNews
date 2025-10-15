@@ -14,6 +14,14 @@
     <string name="back_to_login">Back to Login</string>
     <string name="forgot_password_title">Forgot Password</string>
     <string name="verify_your_email">Verify Your Email</string>
-    <string name="verification_sent_message">A verification link has been sent to your email address. Please click the link to verify your account and proceed to login.</string>
+    <string name="verification_sent_message">A verification link has been sent to your email address. Please click the link to verify your account and proceed to Home.</string>
     <string name="go_to_login">Go to Login</string>
+    <string name="check_verification_status">Check Verification Status</string>
+    <string name="resend_verification_email">Resend Verification Email</string>
+    <string name="use_different_email">Use Different Email</string>
+    <string name="resend_in">Resend in %1$ds</string>
+    <string name="email_verified_success">Email verified successfully!</string>
+    <string name="email_not_verified">Email is not verified yet. Please check your inbox.</string>
+    <string name="verification_email_sent">Verification email sent successfully!</string>
+    <string name="email_not_verified_login">Your email is not verified. Please verify your email first.</string>
 </resources>

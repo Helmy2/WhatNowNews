@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
@@ -75,12 +74,26 @@ class LoginFragment : Fragment() {
                     is LoginUiState.Success -> {
                         Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
                         // Navigate to the home/main screen using Navigation Component
-                        // val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-                        // findNavController().navigate(action)
                         findNavController().navigate(
                             R.id.action_loginFragment_to_homeFragment, null,
                             NavOptions.Builder()
                                 .setPopUpTo(R.id.nav_graph, true) // pop everything up to root
+                                .build()
+                        )
+                    }
+
+                    is LoginUiState.EmailNotVerified -> {
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.email_not_verified_login),
+                            Toast.LENGTH_LONG
+                        ).show()
+                        // Navigate to verification screen, remove login from back stack
+                        findNavController().navigate(
+                            R.id.emailVerificationFragment,
+                            null,
+                            NavOptions.Builder()
+                                .setPopUpTo(R.id.loginFragment, true)
                                 .build()
                         )
                     }
