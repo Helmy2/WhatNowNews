@@ -22,21 +22,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // TODO: Replace this with your actual authentication logic
-/*        val isAuthenticated = false
-
-        val navHostFragment =binding.navHostFragment.getFragment<NavHostFragment>()
-        val navController = navHostFragment.navController
-
-        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-
-        if (isAuthenticated) {
-            navGraph.setStartDestination(R.id.homeFragment)
-        } else {
-            navGraph.setStartDestination(R.id.loginFragment)
-        }
-
-        navController.graph = navGraph*/
         observeAuthStatus()
     }
     private fun observeAuthStatus() {
