@@ -40,4 +40,9 @@ interface AuthRepository {
      * Get the current user's UID.
      */
     fun getCurrentUserUid(): String?
+
+    /**
+     * Sign out the current user.
+     */
+    fun signOut()
 }

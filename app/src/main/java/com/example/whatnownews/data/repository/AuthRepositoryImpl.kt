@@ -82,4 +82,8 @@ class AuthRepositoryImpl(private val firebaseAuth: FirebaseAuth) :
         return firebaseAuth.currentUser?.uid
     }
 
+    override fun signOut() {
+        firebaseAuth.signOut()
+    }
+
 }
