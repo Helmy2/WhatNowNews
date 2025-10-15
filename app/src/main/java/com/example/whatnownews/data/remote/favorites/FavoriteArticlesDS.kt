@@ -1,6 +1,7 @@
 package com.example.whatnownews.data.remote.favorites
 
 import android.util.Log
+import com.example.whatnownews.BuildConfig
 import com.example.whatnownews.domain.model.FavoriteArticlesModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -11,47 +12,59 @@ class FavoriteArticlesDS(
     private val firebaseAuth: FirebaseAuth
 ) {
 
-    private val userId = firebaseAuth.currentUser?.uid.toString()
+    private val _userId = firebaseAuth.currentUser?.uid.toString()
     suspend fun updateFavorite(articleId: String, isFav: Boolean) {
+        val safeId = articleId.replace("/", "_")
+
         val docRef = firestore.collection("users")
-            .document(userId)
+            .document(_userId)
             .collection("favorite_articles")
-            .document(articleId)
+            .document(safeId)
 
         try {
             val snapshot = docRef.get().await()
             if (snapshot.exists()) {
                 docRef.update("isFavorite", isFav).await()
-                Log.wtf("🔥 Updated", "$articleId -> $isFav")
             } else {
                 docRef.set(mapOf("id" to articleId, "isFavorite" to isFav)).await()
-                Log.wtf("✨ Created new", "$articleId -> $isFav")
             }
         } catch (e: Exception) {
-            Log.e("Firestore", "Update failed", e)
+            if (BuildConfig.DEBUG) {
+                Log.e("Firestore", "Error updating favorite", e)
+            }
         }
     }
-
 
     suspend fun addFavorite(article: FavoriteArticlesModel) {
+        val safeId = article.id.replace("/", "_")
+
+        val docRef = firestore.collection("users")
+            .document(_userId)
+            .collection("favorite_articles")
+            .document(safeId)
+
         try {
-            val docRef = firestore.collection("users")
-                .document(userId)
-                .collection("favorite_articles")
-                .document(article.id)
+            val snapshot = docRef.get().await()
 
-            docRef.set(article.toMap()).await()
+            if (snapshot.exists()) {
+                docRef.update("isFavorite", article.isFavorite).await()
+            } else {
+                docRef.set(article.toMap()).await()
+            }
 
-            Log.wtf("✨ Added favorite", "${article.id} -> ${article.isFavorite}")
         } catch (e: Exception) {
-            Log.e("Firestore", "Add favorite failed", e)
+            if (BuildConfig.DEBUG) {
+                Log.e("Firestore", "Error updating favorite", e)
+            }
         }
     }
+
+
 
 
     fun listenToFavoriteArticles(onResult: (List<FavoriteArticlesModel>) -> Unit) {
         firestore.collection("users")
-            .document(userId)
+            .document(_userId)
             .collection("favorite_articles")
             .whereEqualTo("isFavorite", true)
             .addSnapshotListener { snapshot, error ->
@@ -65,7 +78,6 @@ class FavoriteArticlesDS(
                         ?.copy(id = doc.id)
                 } ?: emptyList()
 
-                Log.e("🔥 ListenResult", "Fetched IDs: ${articles.joinToString { it.id }}")
                 onResult(articles)
             }
     }
@@ -73,7 +85,7 @@ class FavoriteArticlesDS(
 
     suspend fun getArticles(): List<FavoriteArticlesModel> {
         val snapshot = firestore.collection("users")
-            .document(userId)
+            .document(_userId)
             .collection("favorite_articles")
             .whereEqualTo("isFavorite", true)
             .get()
@@ -83,7 +95,6 @@ class FavoriteArticlesDS(
             doc.toObject(FavoriteArticlesModel::class.java)?.copy(id = doc.id)
         }
 
-        Log.e("🔥 GetArticles", "Fetched IDs: ${articles.joinToString { it.id }}")
         return articles
     }
 }
