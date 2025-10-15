@@ -1,8 +1,6 @@
 package com.example.whatnownews.data.api
 
 data class News(
-//    val status: String,
-//    val totalResults: Int,
     val articles: ArrayList<Article>
 )
 

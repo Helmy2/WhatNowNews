@@ -28,8 +28,6 @@ class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
         position: Int
     ) {
 
-        Log.d("trace", "Link: ${articles[position].urlToImage}")
-
         holder.binding.articleText.text = articles[position].title
 
         Glide

@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.whatnownews.R
 import com.example.whatnownews.databinding.FragmentHomeBinding
+import com.example.whatnownews.domain.model.Category
+import com.example.whatnownews.presentation.common.CATEGORY_KEY
 
 class HomeFragment : Fragment() {
 
@@ -21,6 +23,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,23 +42,23 @@ class HomeFragment : Fragment() {
 
     private fun setupCategoryClickListeners() {
         val categoryMap = mapOf(
-            binding.cardCategoryGeneral to "general",
-            binding.cardCategoryEntertainment to "entertainment",
-            binding.cardCategorySports to "sports",
-            binding.cardCategoryBusiness to "business",
-            binding.cardCategoryHealth to "health",
-            binding.cardCategoryScience to "science"
+            binding.cardCategoryGeneral to Category.General,
+            binding.cardCategoryEntertainment to Category.Entertainment,
+            binding.cardCategorySports to Category.Sports,
+            binding.cardCategoryBusiness to Category.Business,
+            binding.cardCategoryHealth to Category.Health,
+            binding.cardCategoryScience to Category.Science
         )
 
         categoryMap.forEach { (cardView, category) ->
             cardView.setOnClickListener {
-                navigateToArticleList(category)
+                navigateToArticleList(category.categoryName)
             }
         }
     }
 
     private fun navigateToArticleList(category: String) {
-        val bundle = bundleOf("category" to category)
+        val bundle = bundleOf(CATEGORY_KEY to category)
         findNavController().navigate(R.id.action_homeFragment_to_articleListFragment, bundle)
     }
 

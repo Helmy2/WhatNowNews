@@ -10,6 +10,8 @@ import com.example.whatnownews.data.api.Article
 import com.example.whatnownews.data.api.News
 import com.example.whatnownews.data.api.NewsCallable
 import com.example.whatnownews.databinding.FragmentArticleListBinding
+import com.example.whatnownews.domain.model.Category
+import com.example.whatnownews.presentation.common.CATEGORY_KEY
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,7 +22,7 @@ class ArticleListFragment : Fragment() {
 
     private lateinit var binding: FragmentArticleListBinding
     private val category: String by lazy {
-        arguments?.getString("category") ?: "general"
+        arguments?.getString(CATEGORY_KEY) ?: Category.General.categoryName
     }
 
     override fun onCreateView(
@@ -47,7 +49,6 @@ class ArticleListFragment : Fragment() {
     }
 
     private fun loadNews() {
-        // For better practice, consider using a dependency injection framework like Hilt or Koin to provide the Retrofit instance.
         val retrofit = Retrofit
             .Builder()
             .baseUrl("https://newsapi.org")
