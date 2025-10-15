@@ -19,12 +19,10 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        //load the values from .properties file
         val keystoreFile = project.rootProject.file("local.properties")
         val properties = Properties()
         properties.load(keystoreFile.inputStream())
 
-        //return empty key in case something goes wrong
         val apiKey = properties.getProperty("API_KEY") ?: ""
         buildConfigField(
             type = "String",
