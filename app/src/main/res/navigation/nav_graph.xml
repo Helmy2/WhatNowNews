@@ -88,6 +88,11 @@
         android:id="@+id/articleListFragment"
         android:name="com.example.whatnownews.presentation.articles.ArticleListFragment"
         android:label="ArticleListFragment"
-        tools:layout="@layout/fragment_article_list" />
+        tools:layout="@layout/fragment_article_list">
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue="general" />
+    </fragment>
 
 </navigation>

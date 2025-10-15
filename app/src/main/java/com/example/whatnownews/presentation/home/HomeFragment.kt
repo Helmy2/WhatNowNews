@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.whatnownews.R
@@ -33,9 +34,29 @@ class HomeFragment : Fragment() {
             showPopupMenu(anchorView)
         }
 
-        binding.cardCategory1.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_articleListFragment)
+        setupCategoryClickListeners()
+    }
+
+    private fun setupCategoryClickListeners() {
+        val categoryMap = mapOf(
+            binding.cardCategoryGeneral to "general",
+            binding.cardCategoryEntertainment to "entertainment",
+            binding.cardCategorySports to "sports",
+            binding.cardCategoryBusiness to "business",
+            binding.cardCategoryHealth to "health",
+            binding.cardCategoryScience to "science"
+        )
+
+        categoryMap.forEach { (cardView, category) ->
+            cardView.setOnClickListener {
+                navigateToArticleList(category)
+            }
         }
+    }
+
+    private fun navigateToArticleList(category: String) {
+        val bundle = bundleOf("category" to category)
+        findNavController().navigate(R.id.action_homeFragment_to_articleListFragment, bundle)
     }
 
     private fun showPopupMenu(anchor: View) {
@@ -44,7 +65,7 @@ class HomeFragment : Fragment() {
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_settings -> {
-                    Toast.makeText(context, "Settings Clicked", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
                     true
                 }
 
