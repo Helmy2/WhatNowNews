@@ -5,4 +5,13 @@ data class FavoriteArticlesModel(
     val title: String = "",
     val imageUrl: String = "",
     var isFavorite: Boolean = true
-)
+){
+    fun toMap(): Map<String, Any> {
+        return mapOf(
+            "id" to id,
+            "title" to title,
+            "imageUrl" to imageUrl,
+            "isFavorite" to isFavorite
+        )
+    }
+}

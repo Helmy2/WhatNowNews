@@ -30,6 +30,8 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        view.applySafeArea()
+
         binding.toolbar.setNavigationOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
@@ -63,7 +65,7 @@ class FavoritesFragment : Fragment() {
     private fun View.applySafeArea() {
         ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             WindowInsetsCompat.CONSUMED
         }
     }
