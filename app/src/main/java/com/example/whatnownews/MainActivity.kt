@@ -1,7 +1,10 @@
 package com.example.whatnownews
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.example.whatnownews.databinding.ActivityMainBinding
@@ -10,6 +13,7 @@ import com.example.whatnownews.presentation.auth.SplashViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,9 +25,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        handleWindowInsets()
         observeAuthStatus()
     }
+    private fun handleWindowInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(binding.root.id)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setBackgroundColor(Color.BLACK)
+            insets
+        }
+    }
+
     private fun observeAuthStatus() {
         lifecycleScope.launch {
 
