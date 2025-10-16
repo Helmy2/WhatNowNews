@@ -20,7 +20,8 @@ import com.example.whatnownews.domain.usecase.auth.LoginUseCase
 import com.example.whatnownews.domain.usecase.auth.SendEmailVerificationUseCase
 import com.example.whatnownews.domain.usecase.auth.SignOutUseCase
 import com.example.whatnownews.domain.usecase.auth.SignUpUseCase
-import com.example.whatnownews.presentation.articles.ArticlesViewModel
+import com.example.whatnownews.presentation.articles.NewsViewModel
+//import com.example.whatnownews.presentation.articles.ArticlesViewModel
 import com.example.whatnownews.presentation.auth.CheckAuthStatusUseCase
 import com.example.whatnownews.presentation.auth.EmailVerificationViewModel
 import com.example.whatnownews.presentation.auth.ForgotPasswordViewModel
@@ -36,6 +37,7 @@ import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.GlobalContext.get
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
@@ -113,6 +115,6 @@ val appModule = module {
     viewModelOf(::FavoritesViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::SettingsViewModel)
-    viewModelOf(::ArticlesViewModel)
+    viewModelOf(::NewsViewModel)
 
 }
