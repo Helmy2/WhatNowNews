@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.whatnownews.R
-import com.example.whatnownews.domain.model.FavoriteArticlesModel
+import com.example.whatnownews.domain.models.articles.FavoriteArticlesModel
 import com.example.whatnownews.databinding.ArticleListItemBinding
 
 class FavoriteArticlesAdapter(
