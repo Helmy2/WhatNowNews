@@ -1,6 +1,6 @@
 package com.example.whatnownews.presentation.auth
 
-import com.example.whatnownews.domain.repository.AuthRepository
+import com.example.whatnownews.domain.repository.auth.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
 
 class CheckAuthStatusUseCase(
