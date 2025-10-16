@@ -1,4 +1,4 @@
-package com.example.whatnownews.data.preferences
+package com.example.whatnownews.data.local.datastore.preferences
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
