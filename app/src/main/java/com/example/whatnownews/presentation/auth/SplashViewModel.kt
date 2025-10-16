@@ -1,7 +1,7 @@
 package com.example.whatnownews.presentation.auth
 
 import androidx.lifecycle.ViewModel
-import com.example.whatnownews.domain.repository.SettingRepository
+import com.example.whatnownews.domain.repository.settings.SettingRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
