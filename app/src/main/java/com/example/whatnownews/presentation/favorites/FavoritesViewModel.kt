@@ -4,12 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.whatnownews.domain.model.FavoriteArticlesModel
-import com.example.whatnownews.domain.repository.ArticleRepository
+import com.example.whatnownews.domain.models.articles.FavoriteArticlesModel
+import com.example.whatnownews.domain.repository.articles.FavoriteArticlesRepository
 import kotlinx.coroutines.launch
 
 class FavoritesViewModel(
-    private val articleRepository: ArticleRepository
+    private val favoriteArticlesRepository: FavoriteArticlesRepository
 ) : ViewModel() {
 
     private val _articles = MutableLiveData<List<FavoriteArticlesModel>>()
@@ -22,7 +22,7 @@ class FavoritesViewModel(
     }
 
     private fun startListeningToFavorites() {
-        articleRepository.listenToFavorites { articles ->
+        favoriteArticlesRepository.listenToFavorites { articles ->
             _articles.postValue(articles)
         }
     }
@@ -31,7 +31,7 @@ class FavoritesViewModel(
     fun getArticles() {
         viewModelScope.launch {
             _isLoading.value = true
-            val list = articleRepository.getArticles()
+            val list = favoriteArticlesRepository.getArticles()
             _articles.value = list
             _isLoading.value = false
         }
@@ -40,14 +40,14 @@ class FavoritesViewModel(
     fun toggleFavorite(article: FavoriteArticlesModel) {
         val updated = article.copy(isFavorite = !article.isFavorite)
         viewModelScope.launch {
-            articleRepository.updateFavorite(updated.id, updated.isFavorite)
+            favoriteArticlesRepository.updateFavorite(updated.id, updated.isFavorite)
         }
     }
 
 
     fun addFavorite(article: FavoriteArticlesModel) {
         viewModelScope.launch {
-            articleRepository.addFavorite(article)
+            favoriteArticlesRepository.addFavorite(article)
         }
     }
 }
