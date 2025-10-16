@@ -4,22 +4,23 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.whatnownews.data.api.NewsCallable
-import com.example.whatnownews.data.preferences.CountryPreferencesDataSource
-import com.example.whatnownews.data.preferences.CountryPreferencesDataSourceImpl
+import com.example.whatnownews.data.remote.news.NewsCallable
+import com.example.whatnownews.data.local.datastore.preferences.CountryPreferencesDataSource
+import com.example.whatnownews.data.local.datastore.preferences.CountryPreferencesDataSourceImpl
 import com.example.whatnownews.data.remote.favorites.FavoriteArticlesDS
-import com.example.whatnownews.data.repository.ArticleRepositoryImpl
-import com.example.whatnownews.data.repository.AuthRepositoryImpl
-import com.example.whatnownews.data.repository.SettingRepositoryImpl
-import com.example.whatnownews.domain.repository.ArticleRepository
-import com.example.whatnownews.domain.repository.AuthRepository
-import com.example.whatnownews.domain.repository.SettingRepository
+import com.example.whatnownews.data.repository.articles.FavoriteArticlesRepositoryImpl
+import com.example.whatnownews.data.repository.auth.AuthRepositoryImpl
+import com.example.whatnownews.data.repository.settings.SettingRepositoryImpl
+import com.example.whatnownews.domain.repository.articles.FavoriteArticlesRepository
+import com.example.whatnownews.domain.repository.auth.AuthRepository
+import com.example.whatnownews.domain.repository.settings.SettingRepository
 import com.example.whatnownews.domain.usecase.auth.CheckEmailVerifiedUseCase
 import com.example.whatnownews.domain.usecase.auth.ForgotPasswordUseCase
 import com.example.whatnownews.domain.usecase.auth.LoginUseCase
 import com.example.whatnownews.domain.usecase.auth.SendEmailVerificationUseCase
 import com.example.whatnownews.domain.usecase.auth.SignOutUseCase
 import com.example.whatnownews.domain.usecase.auth.SignUpUseCase
+import com.example.whatnownews.presentation.articles.ArticlesViewModel
 import com.example.whatnownews.presentation.auth.CheckAuthStatusUseCase
 import com.example.whatnownews.presentation.auth.EmailVerificationViewModel
 import com.example.whatnownews.presentation.auth.ForgotPasswordViewModel
@@ -90,7 +91,7 @@ val appModule = module {
 
     // Repositories
     factoryOf(::AuthRepositoryImpl).bind<AuthRepository>()
-    factoryOf(::ArticleRepositoryImpl).bind<ArticleRepository>()
+    factoryOf(::FavoriteArticlesRepositoryImpl).bind<FavoriteArticlesRepository>()
     factoryOf(::SettingRepositoryImpl).bind<SettingRepository>()
     factoryOf(::CountryPreferencesDataSourceImpl).bind<CountryPreferencesDataSource>()
 
@@ -112,4 +113,6 @@ val appModule = module {
     viewModelOf(::FavoritesViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::SettingsViewModel)
+    viewModelOf(::ArticlesViewModel)
+
 }
