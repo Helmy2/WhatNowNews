@@ -13,6 +13,10 @@ import com.example.whatnownews.domain.models.category.Category
 import com.example.whatnownews.presentation.common.CATEGORY_KEY
 import com.example.whatnownews.presentation.favorites.FavoritesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.Lifecycle
+import kotlinx.coroutines.launch
+
 
 class ArticleListFragment : Fragment() {
 
@@ -39,16 +43,18 @@ class ArticleListFragment : Fragment() {
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            newsViewModel.uiState.collect { state ->
-                when (state) {
-                    is NewsUiState.Loading -> binding.progress.isVisible = true
-                    is NewsUiState.Success -> {
-                        binding.progress.isVisible = false
-                        showNews(ArrayList(state.articles))
-                    }
-                    is NewsUiState.Error -> {
-                        binding.progress.isVisible = false
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                newsViewModel.uiState.collect { state ->
+                    when (state) {
+                        is NewsUiState.Loading -> binding.progress.isVisible = true
+                        is NewsUiState.Success -> {
+                            binding.progress.isVisible = false
+                            showNews(ArrayList(state.articles))
+                        }
+                        is NewsUiState.Error -> {
+                            binding.progress.isVisible = false
+                        }
                     }
                 }
             }
@@ -61,6 +67,7 @@ class ArticleListFragment : Fragment() {
             binding.swipeRefresh.isRefreshing = false
         }
     }
+
 
     private fun showNews(articles: ArrayList<ArticleModel>) {
         val adapter = NewsAdapter(requireActivity(), articles, favoritesViewModel)
