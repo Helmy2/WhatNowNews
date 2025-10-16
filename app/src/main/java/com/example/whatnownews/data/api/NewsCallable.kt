@@ -10,7 +10,7 @@ interface NewsCallable {
     @GET("/v2/top-headlines?pageSize=50")
     fun getNews(
         @Query("category") category: String,
-        @Query("country") country: String = "us",
+        @Query("country") country: String,
         @Query("apiKey") apiKey: String = BuildConfig.API_KEY
     ): Call<News>
 

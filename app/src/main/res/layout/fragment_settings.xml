@@ -31,7 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp">
+        android:layout_marginStart="16dp"
+        android:id="@+id/countries_radio_group">
 
         <RadioButton
             android:id="@+id/unitedStates_radioButton"
@@ -53,75 +54,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Germany"
-            android:textSize="16sp"/>
-
-    </RadioGroup>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Language"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="12dp"
-        android:textColor="@color/black" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp">
-
-        <RadioButton
-            android:id="@+id/english_radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="English"
-            android:textSize="16sp"
-            android:checked="true"/>
-
-
-        <RadioButton
-            android:id="@+id/arabic_radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Arabic"
-            android:textSize="16sp"/>
-
-    </RadioGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Theme"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="12dp"
-        android:textColor="@color/black"/>
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp">
-
-        <RadioButton
-            android:id="@+id/lightMode_radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Light Mode"
-            android:textSize="16sp"
-            android:checked="true"/>
-
-
-        <RadioButton
-            android:id="@+id/darkMode_radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dark Mode"
             android:textSize="16sp"/>
 
     </RadioGroup>

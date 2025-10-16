@@ -1,9 +1,12 @@
 package com.example.whatnownews.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.whatnownews.data.preferences.CountryPreferencesDataSource
+import com.example.whatnownews.data.preferences.CountryPreferencesDataSourceImpl
 import com.example.whatnownews.data.repository.AuthRepositoryImpl
 import com.example.whatnownews.domain.repository.AuthRepository
 import com.example.whatnownews.domain.usecase.auth.CheckEmailVerifiedUseCase
@@ -20,7 +23,11 @@ import com.example.whatnownews.presentation.auth.SignUpViewModel
 import com.example.whatnownews.presentation.auth.SplashViewModel
 import com.example.whatnownews.data.remote.favorites.FavoriteArticlesDS
 import com.example.whatnownews.data.repository.ArticleRepositoryImpl
+import com.example.whatnownews.data.repository.CountryRepositoryImpl
 import com.example.whatnownews.domain.repository.ArticleRepository
+import com.example.whatnownews.domain.repository.CountryRepository
+import com.example.whatnownews.domain.usecase.sharedprefs.GetSelectedCountryUseCase
+import com.example.whatnownews.domain.usecase.sharedprefs.SaveSelectedCountryUseCase
 import com.example.whatnownews.presentation.favorites.FavoritesViewModel
 import org.koin.core.module.dsl.viewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -103,5 +110,20 @@ val appModule = module {
 
     // ViewModels
     viewModel { FavoritesViewModel(get()) }
+
+    // Provide SharedPreferences instance
+    single<SharedPreferences> {
+        get<Context>().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+    }
+
+    // DataSource implementation
+    single<CountryPreferencesDataSource> { CountryPreferencesDataSourceImpl(get()) }
+
+    // Repository implementation
+    single<CountryRepository> { CountryRepositoryImpl(get()) }
+
+    // Use cases
+    factory { GetSelectedCountryUseCase(get()) }
+    factory { SaveSelectedCountryUseCase(get()) }
 
 }
