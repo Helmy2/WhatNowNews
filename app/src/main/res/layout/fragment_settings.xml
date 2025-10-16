@@ -59,6 +59,12 @@
 
     </RadioGroup>
 
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/isDarkModeswitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/is_dark_mode"
+        android:layout_margin="16dp"/>
 
 
 </LinearLayout>

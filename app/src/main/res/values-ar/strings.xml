@@ -44,4 +44,5 @@
     <string name="light_mode">الوضع الفاتح</string>
     <string name="dark_mode">الوضع الداكن</string>
     <string name="logout">تسجيل الخروج</string>
+    <string name="is_dark_mode">الوضع الداكن</string>
 </resources>

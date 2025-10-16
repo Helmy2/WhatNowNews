@@ -1,6 +1,10 @@
 package com.example.whatnownews.data.preferences
 
+import kotlinx.coroutines.flow.Flow
+
 interface CountryPreferencesDataSource {
-    fun saveCountry(countryCode: String)
-    fun getCountry(): String
+    suspend fun saveCountry(countryCode: String)
+    fun getCountry(): Flow<String>
+    fun isDarkMode(): Flow<Boolean>
+    suspend fun toggleDarkMode()
 }

@@ -4,11 +4,16 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.whatnownews.data.api.NewsCallable
+import com.example.whatnownews.data.preferences.CountryPreferencesDataSource
+import com.example.whatnownews.data.preferences.CountryPreferencesDataSourceImpl
 import com.example.whatnownews.data.remote.favorites.FavoriteArticlesDS
 import com.example.whatnownews.data.repository.ArticleRepositoryImpl
 import com.example.whatnownews.data.repository.AuthRepositoryImpl
+import com.example.whatnownews.data.repository.SettingRepositoryImpl
 import com.example.whatnownews.domain.repository.ArticleRepository
 import com.example.whatnownews.domain.repository.AuthRepository
+import com.example.whatnownews.domain.repository.SettingRepository
 import com.example.whatnownews.domain.usecase.auth.CheckEmailVerifiedUseCase
 import com.example.whatnownews.domain.usecase.auth.ForgotPasswordUseCase
 import com.example.whatnownews.domain.usecase.auth.LoginUseCase
@@ -23,6 +28,7 @@ import com.example.whatnownews.presentation.auth.SignUpViewModel
 import com.example.whatnownews.presentation.auth.SplashViewModel
 import com.example.whatnownews.presentation.favorites.FavoritesViewModel
 import com.example.whatnownews.presentation.home.HomeViewModel
+import com.example.whatnownews.presentation.settings.SettingsViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.GsonBuilder
@@ -56,7 +62,7 @@ val appModule = module {
     single {
         GsonBuilder().create()
     }
-    single {
+    single<Retrofit> {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(get())
@@ -64,6 +70,11 @@ val appModule = module {
             .build()
     }
     // Retrofit Service
+
+    single<NewsCallable> {
+        val retrofit = get<Retrofit>()
+        retrofit.create(NewsCallable::class.java)
+    }
 
     // Firebase
     single { FirebaseAuth.getInstance() }
@@ -78,8 +89,10 @@ val appModule = module {
 
 
     // Repositories
-    singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
-    singleOf(::ArticleRepositoryImpl).bind<ArticleRepository>()
+    factoryOf(::AuthRepositoryImpl).bind<AuthRepository>()
+    factoryOf(::ArticleRepositoryImpl).bind<ArticleRepository>()
+    factoryOf(::SettingRepositoryImpl).bind<SettingRepository>()
+    factoryOf(::CountryPreferencesDataSourceImpl).bind<CountryPreferencesDataSource>()
 
     // UseCases
     factoryOf(::SignUpUseCase)
@@ -98,4 +111,5 @@ val appModule = module {
     viewModelOf(::SplashViewModel)
     viewModelOf(::FavoritesViewModel)
     viewModelOf(::HomeViewModel)
+    viewModelOf(::SettingsViewModel)
 }
