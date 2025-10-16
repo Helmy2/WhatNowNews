@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.whatnownews.R
-import com.example.whatnownews.data.api.Article
 import com.example.whatnownews.databinding.ArticleListItemBinding
-import com.example.whatnownews.domain.model.FavoriteArticlesModel
+import com.example.whatnownews.domain.models.articles.ArticleModel
+import com.example.whatnownews.domain.models.articles.FavoriteArticlesModel
 import com.example.whatnownews.presentation.favorites.FavoritesViewModel
 
 class NewsAdapter(
     private val activity: Activity,
-    private val articles: ArrayList<Article>,
+    private val articles: ArrayList<ArticleModel>,
     private val favoritesViewModel: FavoritesViewModel
 ) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     private val favoriteIds = mutableSetOf<String>()
