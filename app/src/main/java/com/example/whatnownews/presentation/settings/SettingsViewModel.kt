@@ -2,7 +2,7 @@ package com.example.whatnownews.presentation.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.whatnownews.domain.repository.SettingRepository
+import com.example.whatnownews.domain.repository.settings.SettingRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
