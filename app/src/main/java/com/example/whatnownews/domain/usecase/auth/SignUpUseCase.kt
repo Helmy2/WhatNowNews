@@ -1,7 +1,7 @@
 package com.example.whatnownews.domain.usecase.auth
 
 import com.example.whatnownews.core.util.Resource
-import com.example.whatnownews.domain.repository.AuthRepository
+import com.example.whatnownews.domain.repository.auth.AuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
