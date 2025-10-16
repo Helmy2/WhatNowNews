@@ -5,28 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5"
+    android:background="@color/backgroundColor"
     tools:context=".presentation.settings.SettingsFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
+        android:text="@string/settings"
         android:textSize="28sp"
         android:textStyle="bold"
         android:layout_marginTop="8dp"
-        android:textColor="@color/black"
+        android:textColor="@color/onBackgroundColor"
         android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Country"
+        android:text="@string/country"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:layout_marginStart="12dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/onBackgroundColor"/>
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
             android:id="@+id/unitedStates_radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="United States"
+            android:text="@string/united_states"
             android:textSize="16sp"
             android:checked="true"/>
 
@@ -46,14 +46,14 @@
             android:id="@+id/egypt_radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Egypt"
+            android:text="@string/egypt"
             android:textSize="16sp"/>
 
         <RadioButton
             android:id="@+id/germany_radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Germany"
+            android:text="@string/germany"
             android:textSize="16sp"/>
 
     </RadioGroup>
@@ -62,12 +62,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Language"
+        android:text="@string/language"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:layout_marginStart="12dp"
-        android:textColor="@color/black" />
+        android:textColor="@color/onBackgroundColor" />
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
             android:id="@+id/english_radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="English"
+            android:text="@string/english"
             android:textSize="16sp"
             android:checked="true"/>
 
@@ -88,7 +88,7 @@
             android:id="@+id/arabic_radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Arabic"
+            android:text="@string/arabic"
             android:textSize="16sp"/>
 
     </RadioGroup>
@@ -96,12 +96,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Theme"
+        android:text="@string/theme"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:layout_marginStart="12dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/onBackgroundColor"/>
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
             android:id="@+id/lightMode_radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Light Mode"
+            android:text="@string/light_mode"
             android:textSize="16sp"
             android:checked="true"/>
 
@@ -122,7 +122,7 @@
             android:id="@+id/darkMode_radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dark Mode"
+            android:text="@string/dark_mode"
             android:textSize="16sp"/>
 
     </RadioGroup>

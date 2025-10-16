@@ -25,4 +25,23 @@
     <string name="email_not_verified">لم يتم التحقق من البريد الإلكتروني بعد. يرجى التحقق من بريدك الوارد.</string>
     <string name="verification_email_sent">تم إرسال بريد التحقق بنجاح!</string>
     <string name="email_not_verified_login">بريدك الإلكتروني غير مُحقق. يرجى التحقق من بريدك الإلكتروني أولاً.</string>
+    <string name="categories">الفئات</string>
+    <string name="general">عام</string>
+    <string name="entertainment">ترفيه</string>
+    <string name="sports">رياضة</string>
+    <string name="business">أعمال</string>
+    <string name="health">صحة</string>
+    <string name="science">علوم</string>
+    <string name="settings">الإعدادات</string>
+    <string name="country">الدولة</string>
+    <string name="united_states">الولايات المتحدة</string>
+    <string name="egypt">مصر</string>
+    <string name="germany">ألمانيا</string>
+    <string name="language">اللغة</string>
+    <string name="english">الإنجليزية</string>
+    <string name="arabic">العربية</string>
+    <string name="theme">المظهر</string>
+    <string name="light_mode">الوضع الفاتح</string>
+    <string name="dark_mode">الوضع الداكن</string>
+    <string name="logout">تسجيل الخروج</string>
 </resources>
