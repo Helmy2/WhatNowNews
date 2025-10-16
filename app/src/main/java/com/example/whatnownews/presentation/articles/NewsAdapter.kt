@@ -89,4 +89,3 @@ class NewsAdapter(
     class NewsViewHolder(val binding: ArticleListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 }
-
