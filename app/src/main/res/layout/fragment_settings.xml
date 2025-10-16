@@ -32,7 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp">
+        android:layout_marginStart="16dp"
+        android:id="@+id/countries_radio_group">
 
         <RadioButton
             android:id="@+id/unitedStates_radioButton"
@@ -58,75 +59,12 @@
 
     </RadioGroup>
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/isDarkModeswitch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/language"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="12dp"
-        android:textColor="@color/onBackgroundColor" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp">
-
-        <RadioButton
-            android:id="@+id/english_radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/english"
-            android:textSize="16sp"
-            android:checked="true"/>
-
-
-        <RadioButton
-            android:id="@+id/arabic_radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/arabic"
-            android:textSize="16sp"/>
-
-    </RadioGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/theme"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="12dp"
-        android:textColor="@color/onBackgroundColor"/>
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp">
-
-        <RadioButton
-            android:id="@+id/lightMode_radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/light_mode"
-            android:textSize="16sp"
-            android:checked="true"/>
-
-
-        <RadioButton
-            android:id="@+id/darkMode_radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dark_mode"
-            android:textSize="16sp"/>
-
-    </RadioGroup>
-
+        android:text="@string/is_dark_mode"
+        android:layout_margin="16dp"/>
 
 
 </LinearLayout>
