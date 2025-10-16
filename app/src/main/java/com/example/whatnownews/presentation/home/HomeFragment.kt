@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.whatnownews.R
 import com.example.whatnownews.databinding.FragmentHomeBinding
-import com.example.whatnownews.domain.model.Category
+import com.example.whatnownews.domain.models.category.Category
 import com.example.whatnownews.presentation.common.CATEGORY_KEY
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
