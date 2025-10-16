@@ -2,7 +2,7 @@ package com.example.whatnownews.data.remote.favorites
 
 import android.util.Log
 import com.example.whatnownews.BuildConfig
-import com.example.whatnownews.domain.model.FavoriteArticlesModel
+import com.example.whatnownews.domain.models.articles.FavoriteArticlesModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
