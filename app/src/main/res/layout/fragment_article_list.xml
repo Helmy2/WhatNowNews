@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:fitsSystemWindows="true"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     tools:context=".presentation.home.HomeFragment">
 
@@ -18,10 +17,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/black"
+            android:background="@color/appbarBackgroundColor"
             app:navigationIcon="@drawable/ic_back"
             app:title="category"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextColor="@color/onAppbarBackgroundColor" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

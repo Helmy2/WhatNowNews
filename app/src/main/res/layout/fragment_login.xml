@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
+    android:background="@color/backgroundColor"
     tools:context=".presentation.auth.LoginFragment">
 
     <ScrollView
@@ -24,7 +24,8 @@
                 android:src="@drawable/ic_launcher_foreground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/primaryColor" />
 
             <TextView
                 android:id="@+id/tv_login"
@@ -32,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/login"
-                android:textColor="@color/textColor"
+                android:textColor="@color/onBackgroundColor"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +50,7 @@
                 android:layout_marginEnd="32dp"
                 android:hint="@string/email"
                 android:orientation="vertical"
-                android:textColorHint="@color/textColor"
+                android:textColorHint="@color/onBackgroundColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_login">
@@ -59,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/textColor" />
+                    android:textColor="@color/onBackgroundColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +72,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:hint="@string/password"
-                android:textColorHint="@color/textColor"
+                android:textColorHint="@color/onBackgroundColor"
                 app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColor="@color/textColor" />
+                    android:textColor="@color/onBackgroundColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -92,7 +93,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:text="@string/forgot_password"
-                android:textColor="@color/textColor"
+                android:textColor="@color/onBackgroundColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_password" />
 
@@ -103,9 +104,9 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="32dp"
-                android:backgroundTint="@color/buttonColor"
+                android:backgroundTint="@color/primaryColor"
                 android:text="@string/login"
-                android:textColor="@color/buttonTextColor"
+                android:textColor="@color/onPrimaryColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_forgot_password" />
@@ -123,14 +124,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/don_t_have_an_account"
-                    android:textColor="@color/textColor" />
+                    android:textColor="@color/onBackgroundColor" />
 
                 <TextView
                     android:id="@+id/tv_sign_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sign_up"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/onBackgroundColor"
                     android:textStyle="bold" />
             </LinearLayout>
 

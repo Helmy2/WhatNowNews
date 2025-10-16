@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5"
-    android:fitsSystemWindows="true"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     tools:context=".presentation.home.HomeFragment">
 
@@ -19,9 +18,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/black"
+            android:background="@color/appbarBackgroundColor"
             app:title="WhatNowNews"
-            app:titleTextColor="@android:color/white">
+            app:titleTextColor="@color/onAppbarBackgroundColor">
 
             <ImageView
                 android:id="@+id/iv_options"
@@ -46,8 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Categories"
-        android:textColor="@color/black"
+        android:text="@string/categories"
+        android:textColor="@color/onBackgroundColor"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -63,7 +62,6 @@
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -75,8 +73,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="General"
-                    android:textColor="@android:color/black"
+                    android:text="@string/general"
+                    android:textColor="@color/onBackgroundColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -88,7 +86,6 @@
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -100,8 +97,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Entertainment"
-                    android:textColor="@android:color/black"
+                    android:text="@string/entertainment"
+                    android:textColor="@color/onBackgroundColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -113,7 +110,6 @@
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -125,8 +121,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Sports"
-                    android:textColor="@android:color/black"
+                    android:text="@string/sports"
+                    android:textColor="@color/onBackgroundColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -138,7 +134,6 @@
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -150,8 +145,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Business"
-                    android:textColor="@android:color/black"
+                    android:text="@string/business"
+                    android:textColor="@color/onBackgroundColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -163,7 +158,6 @@
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -175,8 +169,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Health"
-                    android:textColor="@android:color/black"
+                    android:text="@string/health"
+                    android:textColor="@color/onBackgroundColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -188,7 +182,6 @@
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -200,8 +193,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Science"
-                    android:textColor="@android:color/black"
+                    android:text="@string/science"
+                    android:textColor="@color/onBackgroundColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
