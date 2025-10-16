@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.whatnownews.data.api.Article
-import com.example.whatnownews.data.api.News
-import com.example.whatnownews.data.api.NewsCallable
+import com.example.whatnownews.data.remote.news.NewsCallable
 import com.example.whatnownews.databinding.FragmentArticleListBinding
-import com.example.whatnownews.domain.model.Category
-import com.example.whatnownews.domain.repository.SettingRepository
+import com.example.whatnownews.domain.models.articles.ArticleModel
+import com.example.whatnownews.domain.models.category.Category
+import com.example.whatnownews.domain.models.news.NewsModel
+import com.example.whatnownews.domain.repository.settings.SettingRepository
 import com.example.whatnownews.presentation.common.CATEGORY_KEY
 import com.example.whatnownews.presentation.favorites.FavoritesViewModel
 import kotlinx.coroutines.flow.first
@@ -62,10 +62,10 @@ class ArticleListFragment : Fragment() {
         val c: NewsCallable by inject()
         val settingRepository: SettingRepository by inject()
         c.getNews(category, settingRepository.getSelectedCountry().first())
-            .enqueue(object : Callback<News> {
-                override fun onResponse(call: Call<News>, response: Response<News>) {
+            .enqueue(object : Callback<NewsModel> {
+                override fun onResponse(call: Call<NewsModel>, response: Response<NewsModel>) {
                     if (response.isSuccessful) {
-                        response.body()?.articles?.let { articles ->
+                        response.body()?.articleModel?.let { articles ->
                             articles.removeAll { it.title == "[Removed]" }
                             showNews(articles)
                         }
@@ -73,13 +73,13 @@ class ArticleListFragment : Fragment() {
                     binding.progress.isVisible = false
                 }
 
-                override fun onFailure(call: Call<News>, t: Throwable) {
+                override fun onFailure(call: Call<NewsModel>, t: Throwable) {
                     binding.progress.isVisible = false
                 }
             })
     }
 
-    private fun showNews(articles: ArrayList<Article>) {
+    private fun showNews(articles: ArrayList<ArticleModel>) {
         val adapter = NewsAdapter(requireActivity(), articles, favoritesViewModel)
         binding.newsLis.adapter = adapter
     }
