@@ -1,7 +1,7 @@
 package com.example.whatnownews.domain.usecase.auth
 
 import com.example.whatnownews.core.util.Resource
-import com.example.whatnownews.domain.repository.AuthRepository
+import com.example.whatnownews.domain.repository.auth.AuthRepository
 
 class ForgotPasswordUseCase(private val repository: AuthRepository) {
     suspend operator fun invoke(email: String): Resource<Unit> {
