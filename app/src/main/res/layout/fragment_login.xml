@@ -21,11 +21,11 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="60dp"
                 android:contentDescription="@string/logo"
-                android:src="@drawable/ic_launcher_foreground"
+                android:src="@drawable/ic_login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/primaryColor" />
+                 />
 
             <TextView
                 android:id="@+id/tv_login"
