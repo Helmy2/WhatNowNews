@@ -7,21 +7,12 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.whatnownews.data.remote.news.NewsCallable
 import com.example.whatnownews.databinding.FragmentArticleListBinding
 import com.example.whatnownews.domain.models.articles.ArticleModel
 import com.example.whatnownews.domain.models.category.Category
-import com.example.whatnownews.domain.models.news.NewsModel
-import com.example.whatnownews.domain.repository.settings.SettingRepository
 import com.example.whatnownews.presentation.common.CATEGORY_KEY
 import com.example.whatnownews.presentation.favorites.FavoritesViewModel
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ArticleListFragment : Fragment() {
 
@@ -31,6 +22,7 @@ class ArticleListFragment : Fragment() {
     }
 
     private val favoritesViewModel: FavoritesViewModel by viewModel()
+    private val newsViewModel: NewsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -41,42 +33,33 @@ class ArticleListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.toolbar.title = category.replaceFirstChar { it.uppercase() }
         binding.toolbar.setNavigationOnClickListener {
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
 
-        lifecycleScope.launch {
-            loadNews()
-        }
-
-        binding.swipeRefresh.setOnRefreshListener {
-            lifecycleScope.launch {
-                loadNews()
-                binding.swipeRefresh.isRefreshing = false
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            newsViewModel.uiState.collect { state ->
+                when (state) {
+                    is NewsUiState.Loading -> binding.progress.isVisible = true
+                    is NewsUiState.Success -> {
+                        binding.progress.isVisible = false
+                        showNews(ArrayList(state.articles))
+                    }
+                    is NewsUiState.Error -> {
+                        binding.progress.isVisible = false
+                    }
+                }
             }
         }
-    }
 
-    private suspend fun loadNews() {
-        val c: NewsCallable by inject()
-        val settingRepository: SettingRepository by inject()
-        c.getNews(category, settingRepository.getSelectedCountry().first())
-            .enqueue(object : Callback<NewsModel> {
-                override fun onResponse(call: Call<NewsModel>, response: Response<NewsModel>) {
-                    if (response.isSuccessful) {
-                        response.body()?.articleModel?.let { articles ->
-                            articles.removeAll { it.title == "[Removed]" }
-                            showNews(articles)
-                        }
-                    }
-                    binding.progress.isVisible = false
-                }
+        newsViewModel.loadNews(category)
 
-                override fun onFailure(call: Call<NewsModel>, t: Throwable) {
-                    binding.progress.isVisible = false
-                }
-            })
+        binding.swipeRefresh.setOnRefreshListener {
+            newsViewModel.loadNews(category)
+            binding.swipeRefresh.isRefreshing = false
+        }
     }
 
     private fun showNews(articles: ArrayList<ArticleModel>) {
