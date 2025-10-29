@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -17,6 +18,17 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
+
+        val keystoreFile = project.rootProject.file("local.properties")
+        val properties = Properties()
+        properties.load(keystoreFile.inputStream())
+
+        val apiKey = properties.getProperty("API_KEY") ?: ""
+        buildConfigField(
+            type = "String",
+            name = "API_KEY",
+            value = apiKey
+        )
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,12 +66,14 @@ dependencies {
     implementation(libs.coroutines.android)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.glide)
 
     // UI
     implementation(libs.material)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     implementation(libs.motionlayout)
+    implementation(libs.androidx.swiperefreshlayout)
 
     // Network
     implementation(libs.retrofit)

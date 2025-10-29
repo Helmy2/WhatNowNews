@@ -1,5 +1,6 @@
 [versions]
 agp = "8.13.0"
+glide = "5.0.5"
 kotlin = "2.2.20"
 ksp = "2.2.20-2.0.3"
 coroutines = "1.10.2"
@@ -20,8 +21,12 @@ junit = "4.13.2"
 mockk = "1.14.6"
 googleServices = "4.4.3"
 kotzilla = "1.2.2"
+roomCompiler = "2.8.2"
+swiperefreshlayout = "1.2.0-alpha01"
 
 [libraries]
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -47,6 +52,7 @@ motionlayout = { module = "androidx.constraintlayout:constraintlayout", version.
 junit = { module = "junit:junit", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 kotzilla-sdk = { group = "io.kotzilla", name = "kotzilla-sdk", version.ref = "kotzilla" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

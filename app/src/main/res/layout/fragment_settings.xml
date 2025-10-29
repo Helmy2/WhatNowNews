@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
     tools:context=".presentation.settings.SettingsFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Settings Fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/onBackgroundColor"
+        android:layout_gravity="center_horizontal"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/country"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/onBackgroundColor"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:id="@+id/countries_radio_group">
+
+        <RadioButton
+            android:id="@+id/unitedStates_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/united_states"
+            android:textSize="16sp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/egypt_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/egypt"
+            android:textSize="16sp"/>
+
+        <RadioButton
+            android:id="@+id/germany_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/germany"
+            android:textSize="16sp"/>
+
+    </RadioGroup>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/isDarkModeswitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/is_dark_mode"
+        android:layout_margin="16dp"/>
+
+
+</LinearLayout>

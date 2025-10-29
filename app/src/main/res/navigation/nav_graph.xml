@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_emailVerificationFragment"
+            app:destination="@id/emailVerificationFragment" />
     </fragment>
 
     <fragment
@@ -29,6 +32,9 @@
         <action
             android:id="@+id/action_signUpFragment_to_emailVerificationFragment"
             app:destination="@id/emailVerificationFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -45,6 +51,9 @@
         <action
             android:id="@+id/action_emailVerificationFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_emailVerificationFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
 
     <fragment
@@ -58,6 +67,9 @@
         <action
             android:id="@+id/action_homeFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_articleListFragment"
+            app:destination="@id/articleListFragment" />
     </fragment>
 
     <fragment
@@ -71,5 +83,18 @@
         android:name="com.example.whatnownews.presentation.favorites.FavoritesFragment"
         android:label="FavoritesFragment"
         tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/articleListFragment"
+        android:name="com.example.whatnownews.presentation.articles.ArticleListFragment"
+        android:label="ArticleListFragment"
+        tools:layout="@layout/fragment_article_list">
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue="general" />
+    </fragment>
+
+    <action android:id="@+id/action_global_loginFragment" app:destination="@id/loginFragment"/>
 
 </navigation>

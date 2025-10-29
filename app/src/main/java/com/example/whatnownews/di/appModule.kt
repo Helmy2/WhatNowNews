@@ -4,18 +4,46 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.whatnownews.data.api.NewsCallable
+import com.example.whatnownews.data.preferences.CountryPreferencesDataSource
+import com.example.whatnownews.data.preferences.CountryPreferencesDataSourceImpl
+import com.example.whatnownews.data.remote.favorites.FavoriteArticlesDS
+import com.example.whatnownews.data.repository.ArticleRepositoryImpl
+import com.example.whatnownews.data.repository.AuthRepositoryImpl
+import com.example.whatnownews.data.repository.SettingRepositoryImpl
+import com.example.whatnownews.domain.repository.ArticleRepository
+import com.example.whatnownews.domain.repository.AuthRepository
+import com.example.whatnownews.domain.repository.SettingRepository
+import com.example.whatnownews.domain.usecase.auth.CheckEmailVerifiedUseCase
+import com.example.whatnownews.domain.usecase.auth.ForgotPasswordUseCase
+import com.example.whatnownews.domain.usecase.auth.LoginUseCase
+import com.example.whatnownews.domain.usecase.auth.SendEmailVerificationUseCase
+import com.example.whatnownews.domain.usecase.auth.SignOutUseCase
+import com.example.whatnownews.domain.usecase.auth.SignUpUseCase
+import com.example.whatnownews.presentation.auth.CheckAuthStatusUseCase
+import com.example.whatnownews.presentation.auth.EmailVerificationViewModel
+import com.example.whatnownews.presentation.auth.ForgotPasswordViewModel
+import com.example.whatnownews.presentation.auth.LoginViewModel
+import com.example.whatnownews.presentation.auth.SignUpViewModel
+import com.example.whatnownews.presentation.auth.SplashViewModel
+import com.example.whatnownews.presentation.favorites.FavoritesViewModel
+import com.example.whatnownews.presentation.home.HomeViewModel
+import com.example.whatnownews.presentation.settings.SettingsViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
+import org.koin.core.module.dsl.viewModelOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val BASE_URL = "https://newsapi.org/v2/"
-private const val DATABASE_NAME = "what_now_news_db"
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 val appModule = module {
@@ -34,7 +62,7 @@ val appModule = module {
     single {
         GsonBuilder().create()
     }
-    single {
+    single<Retrofit> {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(get())
@@ -43,18 +71,45 @@ val appModule = module {
     }
     // Retrofit Service
 
+    single<NewsCallable> {
+        val retrofit = get<Retrofit>()
+        retrofit.create(NewsCallable::class.java)
+    }
+
     // Firebase
     single { FirebaseAuth.getInstance() }
     single { FirebaseFirestore.getInstance() }
 
-    // Database
-
 
     // DataStore
-    single {
-        androidContext().dataStore
-    }
+    single { androidContext().dataStore }
+
+    // Data Source
+    singleOf(::FavoriteArticlesDS)
+
 
     // Repositories
+    factoryOf(::AuthRepositoryImpl).bind<AuthRepository>()
+    factoryOf(::ArticleRepositoryImpl).bind<ArticleRepository>()
+    factoryOf(::SettingRepositoryImpl).bind<SettingRepository>()
+    factoryOf(::CountryPreferencesDataSourceImpl).bind<CountryPreferencesDataSource>()
 
+    // UseCases
+    factoryOf(::SignUpUseCase)
+    factoryOf(::SendEmailVerificationUseCase)
+    factoryOf(::CheckEmailVerifiedUseCase)
+    factoryOf(::SignOutUseCase)
+    factoryOf(::LoginUseCase)
+    factoryOf(::ForgotPasswordUseCase)
+    factoryOf(::CheckAuthStatusUseCase)
+
+    // ViewModels
+    viewModelOf(::SignUpViewModel)
+    viewModelOf(::EmailVerificationViewModel)
+    viewModelOf(::LoginViewModel)
+    viewModelOf(::ForgotPasswordViewModel)
+    viewModelOf(::SplashViewModel)
+    viewModelOf(::FavoritesViewModel)
+    viewModelOf(::HomeViewModel)
+    viewModelOf(::SettingsViewModel)
 }

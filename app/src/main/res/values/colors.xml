@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primaryColor">#000000</color>
+    <color name="onPrimaryColor">#FFFFFF</color>
+
+    <color name="backgroundColor">#f5f5f5</color>
+    <color name="onBackgroundColor">#000000</color>
+    <color name="appbarBackgroundColor">#000000</color>
+    <color name="onAppbarBackgroundColor">#f5f5f5</color>
 </resources>
